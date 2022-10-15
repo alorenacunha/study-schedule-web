@@ -1,0 +1,7 @@
+node_modules
+dist
+_template
+*.test.tsx
+*/**/*.test.tsx
+*/**/*test.tsx
+*/test/*
