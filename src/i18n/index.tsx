@@ -1,16 +1,17 @@
 import i18n, { use } from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import en from './en.json';
+import ptBR from './ptBR.json';
 
 const resources = {
-  en: {
-    translation: en,
+  ptBR: {
+    translation: ptBR,
   },
 };
 
 use(initReactI18next).init({
   resources,
-  lng: 'en',
+  lng: 'ptBR',
   interpolation: {
     escapeValue: false,
   },

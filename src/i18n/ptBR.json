@@ -1,0 +1,11 @@
+{
+  "add.new": "Adicionar Novo",
+  "calendar": "Agenda",
+  "settings": "Configurações",
+  "study.plans": "Planos de Estudo",
+  "email": "Email",
+  "sigin": "Login",
+  "signin.incorrect": "Email ou senha incorrect",
+  "username": "Email",
+  "what.required": "{{what}} obrigatório"
+}

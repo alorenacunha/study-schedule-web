@@ -18,6 +18,7 @@
   "delete.success.what": "{{what}} successfully deleted",
   "delete.what": "Delete {{what, formatter1}}",
   "delivered": "Delivered",
+  "email": "Email",
   "external.id": "External ID",
   "failed.fetch.what": "Failed to fetch {{what}}",
   "failed.fetch.what.total": "Failed to fetch {{what}} total",

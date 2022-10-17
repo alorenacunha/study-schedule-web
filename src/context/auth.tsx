@@ -4,14 +4,16 @@ import { User } from '../models/user.interface';
 
 export interface AuthContextData {
   user: User | null;
+  getUser: Function;
   jwtStorage: string;
   userStorage: string;
   setUserLogged: Function;
 }
 
 export interface AuthResponse {
+  auth: boolean;
+  token: string;
   user: User;
-  jwt: string;
 }
 
 interface AuthenticateProvider {
@@ -24,8 +26,8 @@ const AuthProvider: React.FC<AuthenticateProvider> = (props): JSX.Element => {
   const navigate = useNavigate();
   const [userLogged, setUserLogged] = useState<User | null>(null);
 
-  const jwtStorage = '@bops:token';
-  const userStorage = '@bops:user';
+  const jwtStorage = '@ae:token';
+  const userStorage = '@ae:user';
 
   useEffect(() => {
     const token = localStorage.getItem(jwtStorage);
@@ -35,10 +37,21 @@ const AuthProvider: React.FC<AuthenticateProvider> = (props): JSX.Element => {
     if (!userLocal) return navigate('/login');
 
     setUserLogged(JSON.parse(userLocal));
-  }, [navigate, setUserLogged]);
+  }, []);
+
+  const getUser = async () => {
+    console.log('getUser');
+    const userLocal = localStorage.getItem(userStorage);
+    if (!userLocal) return navigate('/login');
+    setUserLogged(JSON.parse(userLocal));
+    console.log('userLocal');
+    return userLocal;
+  };
 
   return (
-    <AuthContext.Provider value={{ user: userLogged, jwtStorage, userStorage, setUserLogged }}>
+    <AuthContext.Provider
+      value={{ user: userLogged, getUser, jwtStorage, userStorage, setUserLogged }}
+    >
       {props.children}
     </AuthContext.Provider>
   );

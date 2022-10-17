@@ -38,8 +38,8 @@ const LoginComponent: React.FC<Props> = (props): JSX.Element => {
       <img
         src={Logo}
         className={classes.logo}
-        alt="brand beauty ops"
-        aria-label="logo beauty ops"
+        alt="brand agenda de estudos"
+        aria-label="logo agenda de estudos"
       />
       <Divider />
       <form
@@ -52,21 +52,21 @@ const LoginComponent: React.FC<Props> = (props): JSX.Element => {
           {t('signin')}
         </Typography>
         <Controller
-          name="identifier"
+          name="email"
           control={control}
-          rules={{ required: String(t('what.required', { what: t('username') })) }}
+          rules={{ required: String(t('what.required', { what: t('email') })) }}
           defaultValue=""
           render={({ field: { onChange, value }, fieldState: { error } }) => (
             <TextField
-              aria-label="identifier"
+              aria-label="email"
               variant="filled"
-              label={t('username')}
+              label={t('email')}
               value={value}
               onChange={onChange}
               error={!!error}
               helperText={error ? error.message : null}
               InputLabelProps={{ shrink: true }}
-              inputProps={{ 'aria-label': 'identifier' }}
+              inputProps={{ 'aria-label': 'email' }}
             />
           )}
         />

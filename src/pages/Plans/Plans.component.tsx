@@ -1,13 +1,13 @@
 import { Grid, Typography, WithStyles, withStyles } from '@material-ui/core';
 import { ClassNameMap } from '@material-ui/styles';
 import { t } from 'i18next';
-import styles from './Home.styles';
+import styles from './Plans.styles';
 
 interface Props extends WithStyles<typeof styles> {
   classes: ClassNameMap;
 }
 
-const HomeComponent: React.FC<Props> = (props): JSX.Element => {
+const PlansComponent: React.FC<Props> = (props): JSX.Element => {
   const { classes } = props;
 
   return (
@@ -20,11 +20,11 @@ const HomeComponent: React.FC<Props> = (props): JSX.Element => {
     >
       <Grid item className={classes.contentOverlay}>
         <Typography className={classes.textover} variant="h1">
-          {t('calendar')}
+          {t('study.plans')}
         </Typography>
       </Grid>
     </Grid>
   );
 };
 
-export default withStyles(styles)(HomeComponent);
+export default withStyles(styles)(PlansComponent);

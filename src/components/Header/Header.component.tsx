@@ -35,8 +35,8 @@ const HeaderComponent: React.FC<Props> = (props): JSX.Element => {
           <img
             src={Logo}
             className={classes.logo}
-            alt="brand beauty ops"
-            aria-label="logo beauty ops"
+            alt="brand agenda de estudos"
+            aria-label="logo agenda de estudos"
           />
         </Grid>
         <Grid item className={classes.navigator}>
@@ -73,7 +73,7 @@ const HeaderComponent: React.FC<Props> = (props): JSX.Element => {
               <ListItemIcon>
                 <Person fontSize="small" />
               </ListItemIcon>
-              <ListItemText primary={user?.username} />
+              <ListItemText primary={user?.name} />
             </MenuItem>
             <MenuItem onClick={signOut} aria-label="logout">
               <ListItemIcon>

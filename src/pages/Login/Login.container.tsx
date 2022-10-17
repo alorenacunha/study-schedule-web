@@ -16,12 +16,14 @@ const Login: React.FC = (): JSX.Element => {
   const signIn = useCallback(
     async (data: UserForm) => {
       try {
-        const response = await api.post<AuthResponse>('/auth/local', data);
+        const response = await api.post<AuthResponse>('/auth/signin', data);
 
-        const { jwt, user } = response.data;
+        const { auth, token, user } = response.data;
+        if (!auth) toast.error(t('signin.incorrect'));
+
         setUserLogged(user);
         localStorage.setItem(userStorage, JSON.stringify(user));
-        localStorage.setItem(jwtStorage, jwt);
+        localStorage.setItem(jwtStorage, token);
       } catch (error) {
         toast.error(t('signin.incorrect'));
       }

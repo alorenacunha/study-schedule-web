@@ -1,11 +1,4 @@
-import {
-  Category,
-  HomeOutlined,
-  LocalMall,
-  LocalOffer,
-  ShoppingCart,
-  ShowChartRounded,
-} from '@material-ui/icons';
+import { AddOutlined, CalendarToday, Folder, Settings } from '@material-ui/icons';
 import { t } from 'i18next';
 import { useNavigate } from 'react-router';
 import SideBarComponent from './SideBar.component';
@@ -19,34 +12,24 @@ const SideBar: React.FC = (): JSX.Element => {
 
   const menu = [
     {
-      icon: HomeOutlined,
-      label: t('home'),
+      icon: CalendarToday,
+      label: t('calendar'),
       route: '/',
     },
     {
-      icon: ShoppingCart,
-      label: t('purchase.order'),
-      route: '/purchaseOrder',
+      icon: Folder,
+      label: t('study.plans'),
+      route: '/plans',
     },
     {
-      icon: ShowChartRounded,
-      label: t('inventory'),
-      route: '/inventory',
+      icon: AddOutlined,
+      label: t('add.new'),
+      route: '/create',
     },
     {
-      icon: LocalMall,
-      label: t('product'),
-      route: '/product',
-    },
-    {
-      icon: Category,
-      label: t('category'),
-      route: '/category',
-    },
-    {
-      icon: LocalOffer,
-      label: t('brand'),
-      route: '/brand',
+      icon: Settings,
+      label: t('settings'),
+      route: '/settings',
     },
   ];
 

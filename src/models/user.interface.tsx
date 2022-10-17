@@ -1,10 +1,10 @@
 export interface User {
-  id: string;
-  username: string;
+  name: string;
+  userId: string;
   email: string;
 }
 
 export interface UserForm {
-  identifier: string;
+  email: string;
   password: string;
 }
