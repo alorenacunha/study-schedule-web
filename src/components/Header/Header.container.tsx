@@ -5,13 +5,14 @@ import HeaderComponent from './Header.component';
 
 const Header: React.FC = (): JSX.Element => {
   const navigate = useNavigate();
-  const { user, userStorage, jwtStorage, setUserLogged } = useAuth();
+  const { user, userStorage, emailStorage, jwtStorage, setUserLogged } = useAuth();
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
   const signOut = useCallback(() => {
     setUserLogged(null);
     localStorage.removeItem(userStorage);
+    localStorage.removeItem(emailStorage);
     localStorage.removeItem(jwtStorage);
     navigate('/login');
   }, [userStorage, jwtStorage, navigate, setUserLogged]);

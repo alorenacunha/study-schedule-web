@@ -1,6 +1,6 @@
 export interface UserSettings {
   userId: string;
-  days?: {
+  days: {
     dom: boolean;
     seg: boolean;
     ter: boolean;
@@ -9,8 +9,8 @@ export interface UserSettings {
     sex: boolean;
     sab: boolean;
   };
-  intervals?: {
+  intervals: {
     start: string;
     end: string;
-  };
+  }[];
 }

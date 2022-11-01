@@ -9,7 +9,7 @@ import { t } from 'i18next';
 
 const Login: React.FC = (): JSX.Element => {
   const navigate = useNavigate();
-  const { setUserLogged, userStorage, jwtStorage } = useAuth();
+  const { setUserLogged, userStorage, setEmailLogged, emailStorage, jwtStorage } = useAuth();
   const [loading, setLoading] = useState<boolean>(false);
   const [errorFeedback, setErrorFeedback] = useState<string | null>(null);
 
@@ -19,15 +19,28 @@ const Login: React.FC = (): JSX.Element => {
         const response = await api.post<AuthResponse>('/auth/signin', data);
 
         const { auth, token, user } = response.data;
-        if (!auth) toast.error(t('signin.incorrect'));
+        if (!auth) {
+          return toast.error(t('signin.incorrect'));
+        }
 
-        setUserLogged(user);
-        localStorage.setItem(userStorage, JSON.stringify(user));
+        localStorage.setItem(userStorage, user.name);
+        setUserLogged(user.name);
+        localStorage.setItem(emailStorage, user.userId);
+        setEmailLogged(user.userId);
         localStorage.setItem(jwtStorage, token);
-      } catch (error) {
-        toast.error(t('signin.incorrect'));
+
+        navigate('/');
+      } catch (error: any) {
+        if (error.response.status === 404) {
+          setErrorFeedback(t('server.not.found'));
+        }
+        if (error.response.status === 401) {
+          setErrorFeedback(t('unauthorized'));
+        }
+        if (error.response.status === 400) {
+          setErrorFeedback(t('signin.incorrect'));
+        }
       }
-      navigate('/');
     },
     [userStorage, jwtStorage, setUserLogged, navigate],
   );

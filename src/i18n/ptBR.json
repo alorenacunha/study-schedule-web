@@ -6,6 +6,11 @@
   "email": "Email",
   "sigin": "Login",
   "signin.incorrect": "Email ou senha incorrect",
+  "server.not.found": "Servidor não encontrado",
+  "unauthorized": "Requisição não autorizada",
+  "error": "Erro",
   "username": "Email",
-  "what.required": "{{what}} obrigatório"
+  "what.required": "{{what}} obrigatório",
+  "save.error.what": "Falha ao salvar {{what}}",
+  "save.success.what": "{{what}} salvo com sucesso"
 }

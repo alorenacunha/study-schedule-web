@@ -4,11 +4,12 @@ import {
   CircularProgress,
   FormHelperText,
   Grid,
+  TextField,
+  Typography,
   IconButton,
   WithStyles,
   withStyles,
 } from '@material-ui/core';
-import { TimePicker } from '@material-ui/pickers';
 import { ClassNameMap } from '@material-ui/styles';
 import { t } from 'i18next';
 import { Controller } from 'react-hook-form';
@@ -137,34 +138,40 @@ const SettingsComponent: React.FC<Props> = (props): JSX.Element => {
           />
         </Grid>
 
-        <Grid container direction="row" justifyContent="center" alignItems="center" spacing={2}>
+        <Grid container className={classes.timerGroup}>
+          <Typography className={classes.formGroup} variant="h6">
+            De
+          </Typography>
           <Controller
             name="start"
             control={control}
             render={({ field: { onChange, value }, fieldState: { error } }) => (
-              <TimePicker label="De" value={value} onChange={onChange} />
+              <TextField type="time" value={value} onChange={onChange} />
             )}
           />
+          <Typography className={classes.formGroup} variant="h6">
+            até
+          </Typography>
           <Controller
             name="end"
             control={control}
             render={({ field: { onChange, value }, fieldState: { error } }) => (
-              <TimePicker label="até" value={value} onChange={onChange} />
+              <TextField type="time" value={value} onChange={onChange} />
             )}
           />
         </Grid>
 
         {errorFeedback ? <FormHelperText error>{errorFeedback}</FormHelperText> : null}
-      </form>
 
-      <Button
-        aria-label="submit"
-        variant="contained"
-        color="primary"
-        onClick={handleSubmit(handleSettingsFormSubmit)}
-      >
-        {!loading ? t('save') : <CircularProgress color="secondary" aria-label="loading" />}
-      </Button>
+        <Button
+          aria-label="submit"
+          variant="contained"
+          color="primary"
+          onClick={handleSubmit(handleSettingsFormSubmit)}
+        >
+          {!loading ? t('save') : <CircularProgress color="secondary" aria-label="loading" />}
+        </Button>
+      </form>
     </Grid>
   );
 };

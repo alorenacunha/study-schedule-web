@@ -1,29 +1,24 @@
-import { createStyles } from '@material-ui/core';
-const styles = (theme) =>
+import { createStyles, StyleRules, Theme } from '@material-ui/core';
+const styles = (theme: Theme): StyleRules =>
   createStyles({
-    root: {
-      '& .MuiDialog-paperWidthSm': {
-        minWidth: '400px',
-      },
-    },
     formGroup: {
       display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'center',
-      minWidth: '220px',
-      marginTop: theme.spacing(2),
+      'flex-direction': 'column',
+      gap: '31px',
     },
-    container: {
+    timerGroup: {
       display: 'flex',
-      flexDirection: 'row',
+      'flex-direction': 'row',
+      alignItems: 'center',
       justifyContent: 'center',
+      gap: '31px',
     },
     active: {
-      fontSize: '14px',
-      backgroundColor: theme.palette.primary.main,
+      'background-color': theme.palette.primary.main,
+      'font-size': '1.0rem',
     },
     inactive: {
-      fontSize: '14px',
+      'font-size': '1.0rem',
     },
   });
 

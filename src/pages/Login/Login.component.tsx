@@ -91,7 +91,7 @@ const LoginComponent: React.FC<Props> = (props): JSX.Element => {
         />
         {errorFeedback ? <FormHelperText error>{errorFeedback}</FormHelperText> : null}
         <Button aria-label="submit login button" type="submit" variant="contained" color="primary">
-          {!loading ? t('login') : <CircularProgress color="secondary" aria-label="loading" />}
+          {!loading ? t('login') : <CircularProgress aria-label="loading" />}
         </Button>
       </form>
     </Grid>

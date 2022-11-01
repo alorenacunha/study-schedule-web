@@ -13,7 +13,6 @@ import { ExitToApp, Person } from '@material-ui/icons';
 import { ClassNameMap } from '@material-ui/styles';
 import { t } from 'i18next';
 import Logo from '../../assets/images/logo.png';
-import { User } from '../../models/user.interface';
 import styles from './Header.styles';
 
 interface Props extends WithStyles<typeof styles> {
@@ -21,7 +20,7 @@ interface Props extends WithStyles<typeof styles> {
   handleClick: (MouseEvent) => void;
   handleClose: () => void;
   signOut: () => void;
-  user: User | null;
+  user: string | null;
   anchorEl: null | HTMLElement;
 }
 
@@ -73,13 +72,13 @@ const HeaderComponent: React.FC<Props> = (props): JSX.Element => {
               <ListItemIcon>
                 <Person fontSize="small" />
               </ListItemIcon>
-              <ListItemText primary={user?.name} />
+              <ListItemText>{user ? user : ''}</ListItemText>
             </MenuItem>
             <MenuItem onClick={signOut} aria-label="logout">
               <ListItemIcon>
                 <ExitToApp fontSize="small" />
               </ListItemIcon>
-              <ListItemText primary={t('logout')} />
+              <ListItemText>{t('logout')}</ListItemText>
             </MenuItem>
           </Menu>
         </Grid>

@@ -9,7 +9,7 @@ import api from '../../services/api';
 import SettingsComponent from './Settings.component';
 
 const Settings: React.FC = (): JSX.Element => {
-  const { user, getUser } = useAuth();
+  const { email, getEmail } = useAuth();
   const { handleSubmit, control, reset } = useForm();
   const { currentSettings, setCurrentSettings } = useSettings();
   const [errorFeedback, setErrorFeedback] = useState<string | null>(null);
@@ -17,55 +17,94 @@ const Settings: React.FC = (): JSX.Element => {
 
   const getSettings = useCallback(async () => {
     setLoading(true);
-    console.log({ user });
+    let settings: UserSettings | null = null;
     try {
-      if (!user) getUser();
+      let userEmail = !email ? getEmail() : email;
 
-      const response = await api.get<UserSettings>('/users/settings/' + user?.userId);
+      const response = await api.get<UserSettings>('/settings/' + userEmail);
 
-      console.log({ data: response.data });
+      console.log({ response });
 
-      reset({
-        dom: response.data?.days?.dom,
-        seg: response.data?.days?.seg,
-        ter: response.data?.days?.ter,
-        qua: response.data?.days?.qua,
-        qui: response.data?.days?.qui,
-        sex: response.data?.days?.sex,
-        sab: response.data?.days?.sab,
-        start: response.data?.intervals?.start,
-        end: response.data?.intervals?.end,
-      });
-
-      setCurrentSettings(response.data);
+      if (response.status === 200) {
+        reset({
+          dom: response.data.days.dom,
+          seg: response.data.days.seg,
+          ter: response.data.days.ter,
+          qua: response.data.days.qua,
+          qui: response.data.days.qui,
+          sex: response.data.days.sex,
+          sab: response.data.days.sab,
+          start: response.data.intervals[0].start,
+          end: response.data.intervals[0].end,
+        });
+      } else {
+        reset({
+          dom: false,
+          seg: false,
+          ter: false,
+          qua: false,
+          qui: false,
+          sex: false,
+          sab: false,
+          start: '18:00',
+          end: '19:00',
+        });
+      }
+      console.log({ control });
+      console.log({ dt: response.data });
+      settings = response.data;
     } catch (error) {
-      toast.error(t('failed.fetch.what', { what: t('settings').toLowerCase() }));
+      console.log({ error });
+      reset({
+        dom: false,
+        seg: false,
+        ter: false,
+        qua: false,
+        qui: false,
+        sex: false,
+        sab: false,
+        start: '18:00',
+        end: '19:00',
+      });
+      // toast.error(t('failed.fetch.what', { what: t('settings').toLowerCase() }));
     } finally {
       setLoading(false);
+      setCurrentSettings(settings);
     }
   }, [setLoading, setCurrentSettings]);
 
   useEffect(() => {
-    reset({
-      dom: false,
-      seg: false,
-      ter: false,
-      qua: false,
-      qui: false,
-      sex: false,
-      sab: false,
-    });
     getSettings();
-  }, [getSettings, currentSettings, reset]);
+  }, [getSettings, currentSettings]);
 
-  const updateSettings = (data) => {
+  const updateSettings = async (data) => {
     console.log(data);
-    api.put<any>('/settings/' + currentSettings?.userId, { ...data });
+
+    const settings: UserSettings = {
+      userId: email ? email : '',
+      days: {
+        dom: data.dom,
+        seg: data.seg,
+        ter: data.ter,
+        qua: data.qua,
+        qui: data.qui,
+        sex: data.sex,
+        sab: data.sab,
+      },
+      intervals: [{ start: data.start, end: data.end }],
+    };
+
+    try {
+      await api.put<any>('/settings', { ...settings });
+      toast.success(t('save.success.what', { what: t('settings').toLowerCase() }));
+    } catch (error) {
+      throw new Error(t('failed.fetch.what'));
+      // toast.error(t('failed.fetch.what', { what: t('settings').toLowerCase() }));
+    }
   };
 
-  const handleAction = (data) => {
-    console.log({ data });
-    updateSettings(data);
+  const handleAction = async (data) => {
+    await updateSettings(data);
   };
 
   const handleSettingsFormSubmit = async (data) => {
@@ -76,8 +115,6 @@ const Settings: React.FC = (): JSX.Element => {
 
     try {
       await handleAction(data);
-
-      toast.success(t('save.success.what', { what: t('settings').toLowerCase() }));
     } catch (error) {
       toast.error(t('save.error.what', { what: t('settings').toLowerCase() }));
       setErrorFeedback(t('save.error.what', { what: t('settings').toLowerCase() }));
