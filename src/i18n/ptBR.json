@@ -1,0 +1,16 @@
+{
+  "add.new": "Adicionar Novo",
+  "calendar": "Agenda",
+  "settings": "Configurações",
+  "study.plans": "Planos de Estudo",
+  "email": "Email",
+  "sigin": "Login",
+  "signin.incorrect": "Email ou senha incorrect",
+  "server.not.found": "Servidor não encontrado",
+  "unauthorized": "Requisição não autorizada",
+  "error": "Erro",
+  "username": "Email",
+  "what.required": "{{what}} obrigatório",
+  "save.error.what": "Falha ao salvar {{what}}",
+  "save.success.what": "{{what}} salvo com sucesso"
+}
