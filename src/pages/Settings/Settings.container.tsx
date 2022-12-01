@@ -69,7 +69,8 @@ const Settings: React.FC = (): JSX.Element => {
       // toast.error(t('failed.fetch.what', { what: t('settings').toLowerCase() }));
     } finally {
       setLoading(false);
-      setCurrentSettings(settings);
+      console.log({ settings, setCurrentSettings });
+      // setCurrentSettings(settings);
     }
   }, [setLoading, setCurrentSettings]);
 

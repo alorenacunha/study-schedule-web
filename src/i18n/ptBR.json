@@ -1,6 +1,11 @@
 {
-  "add.new": "Adicionar Novo",
+  "add": {
+    "new": "Adicionar Novo"
+  },
   "calendar": "Agenda",
+  "course": "Curso",
+  "module": "Módulo",
+  "task": "Tarefa",
   "settings": "Configurações",
   "study.plans": "Planos de Estudo",
   "email": "Email",

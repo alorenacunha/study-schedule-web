@@ -1,3 +1,3 @@
-import Create from './Create.component';
+import Create from './Create.container';
 
 export default Create;

@@ -41,7 +41,7 @@ const SettingsComponent: React.FC<Props> = (props): JSX.Element => {
           <Controller
             name="dom"
             control={control}
-            render={({ field: { onChange, value }, fieldState: { error } }) => (
+            render={({ field: { onChange, value } }) => (
               <IconButton
                 aria-label="domingo"
                 onClick={() => {
@@ -55,7 +55,7 @@ const SettingsComponent: React.FC<Props> = (props): JSX.Element => {
           <Controller
             name="seg"
             control={control}
-            render={({ field: { onChange, value }, fieldState: { error } }) => (
+            render={({ field: { onChange, value } }) => (
               <IconButton
                 aria-label="segunda"
                 onClick={() => {
@@ -69,7 +69,7 @@ const SettingsComponent: React.FC<Props> = (props): JSX.Element => {
           <Controller
             name="ter"
             control={control}
-            render={({ field: { onChange, value }, fieldState: { error } }) => (
+            render={({ field: { onChange, value } }) => (
               <IconButton
                 aria-label="terca"
                 onClick={() => {
@@ -83,7 +83,7 @@ const SettingsComponent: React.FC<Props> = (props): JSX.Element => {
           <Controller
             name="qua"
             control={control}
-            render={({ field: { onChange, value }, fieldState: { error } }) => (
+            render={({ field: { onChange, value } }) => (
               <IconButton
                 aria-label="quarta"
                 onClick={() => {
@@ -97,7 +97,7 @@ const SettingsComponent: React.FC<Props> = (props): JSX.Element => {
           <Controller
             name="qui"
             control={control}
-            render={({ field: { onChange, value }, fieldState: { error } }) => (
+            render={({ field: { onChange, value } }) => (
               <IconButton
                 aria-label="quinta"
                 onClick={() => {
@@ -111,7 +111,7 @@ const SettingsComponent: React.FC<Props> = (props): JSX.Element => {
           <Controller
             name="sex"
             control={control}
-            render={({ field: { onChange, value }, fieldState: { error } }) => (
+            render={({ field: { onChange, value } }) => (
               <IconButton
                 aria-label="sexta"
                 onClick={() => {
@@ -125,7 +125,7 @@ const SettingsComponent: React.FC<Props> = (props): JSX.Element => {
           <Controller
             name="sab"
             control={control}
-            render={({ field: { onChange, value }, fieldState: { error } }) => (
+            render={({ field: { onChange, value } }) => (
               <IconButton
                 aria-label="sabado"
                 onClick={() => {
@@ -145,7 +145,7 @@ const SettingsComponent: React.FC<Props> = (props): JSX.Element => {
           <Controller
             name="start"
             control={control}
-            render={({ field: { onChange, value }, fieldState: { error } }) => (
+            render={({ field: { onChange, value } }) => (
               <TextField type="time" value={value} onChange={onChange} />
             )}
           />
@@ -155,7 +155,7 @@ const SettingsComponent: React.FC<Props> = (props): JSX.Element => {
           <Controller
             name="end"
             control={control}
-            render={({ field: { onChange, value }, fieldState: { error } }) => (
+            render={({ field: { onChange, value } }) => (
               <TextField type="time" value={value} onChange={onChange} />
             )}
           />

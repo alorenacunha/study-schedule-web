@@ -5,8 +5,12 @@ const styles = (): StyleRules =>
       height: 'calc(100vh - 100px)',
       width: '100vw',
     },
-    textover: {
-      margin: 'auto',
+    header: {
+      width: 'calc(100vh - 100px)',
+      justifyContent: 'center',
+      gap: '2em',
+      display: 'flex',
+      flexDirection: 'row',
     },
   });
 
